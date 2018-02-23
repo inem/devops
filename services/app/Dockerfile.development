@@ -14,4 +14,8 @@ COPY . /app
 
 RUN bundle config --local path vendor/bundle
 
+#RUN bin/rails db:create
+
+#RUN bin/rails db:migrate
+
 #RUN bundle install --path vendor/bundle
