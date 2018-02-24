@@ -1,3 +1,0 @@
-sut:
-  build: .
-  command: docker build -f services/app/Dockerfile.production services/app/
