@@ -1,3 +1,12 @@
-sut:
-  build: .
-  command: docker build -f services/app/Dockerfile.production services/app/
+version: '2'
+
+services:
+  db:
+    image: postgres
+  sut:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: make test
+    depends_on:
+      - db

@@ -11,3 +11,6 @@ app-bash:
 
 app-setup: development-setup-env app-build
 	docker-compose run app bin/setup
+
+test:
+	docker-compose run --user=$(USER) app bin/rails test
