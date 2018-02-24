@@ -1,0 +1,12 @@
+- hosts: all
+  gather_facts: no
+  tasks:
+    - template:
+        src: environment.j2
+        dest: '../.env'
+      tags: env
+
+    - template:
+        src: database.yml.j2
+        dest: '../services/app/config/database.yml'
+      tags: env
