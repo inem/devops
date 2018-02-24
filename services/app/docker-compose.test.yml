@@ -3,6 +3,8 @@ version: '2'
 services:
   db:
     image: postgres
+    environment:
+      POSTGERS_USER: app
   sut:
     build:
       context: .
