@@ -7,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.production
-    command: make test
+    command: bin/rails test
     environment:
       - RAILS_MASTER_KEY
     depends_on:
