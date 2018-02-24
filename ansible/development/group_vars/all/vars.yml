@@ -1,2 +1,3 @@
-app_port: 3000
-postgres_user: dev
+devops_demo_app_port: 3000
+devops_demo_postgres_user: app
+# devops_demo_run_user: web
