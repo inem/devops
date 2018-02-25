@@ -1,0 +1,4 @@
+resource "aws_key_pair" "inem" {
+  key_name   = "inem"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAvUjm+IYXeroZ39WPby6NILrd3Nf2bA3vcBzFfhwW3B/Svg0VHlVBiKusfCvNSTiRZjtbRTrOGV6tqA/3muJdLDRgM3qR1G/K/3HqwICbo9cK1la6MoG+NI5eVpOSjLKOdTqh5hicO41Qb4IMOHaa7AnXQClALfD0qzZSdO89NYjAfsF0Iy/vTG4UHBB4a99elJ1sGQrg/+l4nJhBys2NNFWMnE426R3M0sh5rwLcisdIanfP4yGlqZKShqrK5Xno0CdFUEMw4HucNTm1sKn6f1Vj6kH2w/P5Vi58uKk3LJuEePDjCYU5NpTkc19O8punJI5p125MKS2RotFSWtu8oQ=="
+}
