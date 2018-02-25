@@ -1,3 +1,9 @@
 devops_demo_app_port: 8080
 devops_demo_postgres_user: app
 devops_demo_run_user: web
+
+devops_demo_run_user: ubuntu
+devops_demo_run_user_home: /home/ubuntu
+devops_demo_env_file: "{{ devops_demo_run_user_home }}/.env"
+devops_demo_aws_logs_group: devops_demo
+devops_demo_aws_logs_stream_web: web
