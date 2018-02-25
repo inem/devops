@@ -7,3 +7,5 @@ devops_demo_run_user_home: /home/ubuntu
 devops_demo_env_file: "{{ devops_demo_run_user_home }}/.env"
 devops_demo_aws_logs_group: devops_demo
 devops_demo_aws_logs_stream_web: web
+
+devops_demo_docker_network_name: main
