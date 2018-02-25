@@ -1,3 +1,2 @@
 [ec2]
-temp.tabsqueeze.com ansible_user=ubuntu
-34.204.42.6 ansible_user=ubuntu
+54.173.46.10

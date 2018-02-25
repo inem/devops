@@ -1,6 +1,11 @@
 devops_demo_app_port: 3000
-devops_demo_postgres_user: app
 
 devops_demo_run_user: "{{ ansible_ssh_user }}"
 devops_demo_run_user_home: "{{ lookup('env','HOME') }}"
 devops_demo_env_file: "{{ lookup('env','PWD') }}/.env"
+
+devops_demo_postgres_host: db
+devops_demo_postgres_user: app
+devops_demo_postgres_password:
+
+devops_demo_rails_env: development

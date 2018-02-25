@@ -20,7 +20,7 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  user: app
+  username: app
   host: db
 
 development:
@@ -83,5 +83,6 @@ test:
 production:
   <<: *default
   database: app_production
-  username: app
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  username: <%= ENV['APP_DATABASE_USER'] %>
+  host: <%= ENV['APP_DATABASE_HOST'] %>
