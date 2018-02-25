@@ -49,24 +49,25 @@
     #   run_once: yes
     #   tags: [webserver]
 
+
     - name: start application
       docker_container:
         recreate: yes
         name: devops-demo-web
         image: "{{ devops_demo_image_name }}:{{ devops_demo_image_tag }}"
         state: started
-        log_driver: awslogs
-        log_options:
-          awslogs-group: "{{ devops_demo_aws_logs_group }}"
-          awslogs-stream: "{{ devops_demo_aws_logs_stream_web }}"
-          awslogs-region: '{{ devops_demo_aws_region }}'
+        # log_driver: awslogs
+        # log_options:
+        #   awslogs-group: "{{ devops_demo_aws_logs_group }}"
+        #   awslogs-stream: "{{ devops_demo_aws_logs_stream_web }}"
+        #   awslogs-region: '{{ devops_demo_aws_region }}'
         restart_policy: always
         env_file: "{{ devops_demo_env_file }}"
         env:
           RAILS_ENV: production
           NODE_ENV: production
-        networks:
-          - main
+        # networks:
+        #   - main
         ports:
           - "80:{{ devops_demo_port }}"
         volumes:
@@ -82,21 +83,28 @@
         name: devops-demo-nginx
         image: "{{ devops_demo_nginx_image_name }}:latest"
         state: started
-        log_driver: awslogs
+        # log_driver: awslogs
         log_options:
           awslogs-group: "{{ devops_demo_aws_logs_group }}"
           awslogs-stream: "{{ devops_demo_aws_logs_stream_web }}"
           awslogs-region: '{{ devops_demo_aws_region }}'
         restart_policy: always
         env_file: "{{ devops_demo_env_file }}"
-        networks:
-          - main
-        ports:
-          - "80:{{ devops_demo_port }}"
+        # networks:
+        #   - main
+        # ports:
+        #   - "80:{{ devops_demo_port }}"
         volumes:
           - "/var/run/docker.sock:/var/run/docker.sock"
           - "/tmp:/tmp"
           - "/opt:/opt"
           - "/var/tmp:/var/tmp"
       tags: [webserver]
+
+    - name: create network
+      docker_network:
+        name: main
+        connected:
+          - devops-demo-web
+          - devops-demo-nginx
 
