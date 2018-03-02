@@ -11,4 +11,4 @@ docker-image-push:
 	docker push inemation/workshop-devops-app:v$(V)
 
 docker-image-run:
-	docker run -it inemation/workshop-devops-app:$(V) bash
+	docker run -it inemation/workshop-devops-app:v$(V) bash

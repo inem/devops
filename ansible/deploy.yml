@@ -11,7 +11,7 @@
       tags: always
 
 
-- hosts: ec2
+- hosts: webservers
   gather_facts: no
   # become: yes
   # become_user: "{{ devops_demo_run_user }}"
@@ -32,16 +32,29 @@
         name: "{{ devops_demo_nginx_image_name }}:latest"
         force: yes
 
+
+    - name: delete container if exist
+      shell: /home/ubuntu/delete-container-if-exist.sh devops-demo-migrations || true
+
     - name: run migrations
-      docker_container:
-        recreate: yes
-        name: devops-demo-migrations
-        command: bin/rails db:migrate
-        image: "{{ devops_demo_image_name }}:{{ devops_demo_image_tag }}"
-        state: started
-        env_file: "{{ devops_demo_env_file }}"
+      shell: docker run --name devops-demo-migrations --env-file {{ devops_demo_env_file }} {{ devops_demo_image_name }}:{{ devops_demo_image_tag }}  ls -l
       run_once: yes
       tags: [webserver]
+
+    #TODO: Replace this^ with the following, when this bug is fixed: https://github.com/ansible/ansible/issues/36196
+
+    # somescript.sh >> somelog.txt
+    # - name: run migrations
+    #   docker_container:
+    #     recreate: yes
+    #     name: devops-demo-migrations
+    #     command: ls -l
+    #     image: "{{ devops_demo_image_name }}:{{ devops_demo_image_tag }}"
+    #     state: started
+    #     env_file: "{{ devops_demo_env_file }}"
+    #     detach: no
+    #   run_once: yes
+    #   tags: [webserver]
 
     - name: start application
       docker_container:
@@ -94,4 +107,3 @@
         connected:
           - devops-demo-web
           - devops-demo-nginx
-
